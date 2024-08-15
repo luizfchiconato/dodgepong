@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://dpn6p8kdimn3h"]
+
+[ext_resource type="Script" path="res://Scenes/Projectiles/Bullet.gd" id="1_8q580"]
+[ext_resource type="Texture2D" uid="uid://8acp50cyx5uh" path="res://Art/Sprites/ball.png" id="1_72h0a"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o3xnk"]
+radius = 27.0
+
+[node name="Bullet" type="Area2D"]
+z_index = 20
+scale = Vector2(0.35, 0.35)
+script = ExtResource("1_8q580")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 20
+emission_shape = 1
+emission_sphere_radius = 19.3
+gravity = Vector2(0, 0)
+initial_velocity_min = 27.4
+initial_velocity_max = 59.36
+angular_velocity_min = 4.75
+angular_velocity_max = 444.72
+scale_amount_max = 2.0
+color = Color(0.972549, 0.164706, 0.164706, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_72h0a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_o3xnk")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
