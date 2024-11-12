@@ -1,11 +1,8 @@
 [gd_scene load_steps=59 format=3 uid="uid://bvg5dny32iw0x"]
 
-[ext_resource type="Texture2D" uid="uid://b4rhu7tb8453t" path="res://Scenes/Player/Sprite/Player_Idle1.png" id="1_8ujai"]
 [ext_resource type="Texture2D" uid="uid://cgwb0bq0pw036" path="res://Scenes/Player/Sprite/Player_attack1.png" id="1_8w3ed"]
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/PlayerMain.gd" id="1_y5oq4"]
 [ext_resource type="Texture2D" uid="uid://rxt0tqq0by7h" path="res://Scenes/Player/Sprite/Player_attack2.png" id="2_2bwr0"]
-[ext_resource type="Texture2D" uid="uid://d1l8sveglv24y" path="res://Scenes/Player/Sprite/Player_Idle2.png" id="2_mad3e"]
-[ext_resource type="Texture2D" uid="uid://v3dbaq7ilxpe" path="res://Scenes/Player/Sprite/Player_Idle3.png" id="3_608ps"]
 [ext_resource type="Texture2D" uid="uid://dqeqwyttq2847" path="res://Scenes/Player/Sprite/Player_attack3.png" id="3_651u7"]
 [ext_resource type="Texture2D" uid="uid://cvenyq15dbqse" path="res://Scenes/Player/Sprite/Player_attack4.png" id="4_uudrv"]
 [ext_resource type="Texture2D" uid="uid://dyc433uhiyw8p" path="res://Scenes/Player/Sprite/Player_attack5.png" id="5_bups0"]
@@ -17,9 +14,8 @@
 [ext_resource type="Texture2D" uid="uid://ypfqnkd3bveh" path="res://Scenes/Player/Sprite/Player_Death1.png" id="11_es3h3"]
 [ext_resource type="Texture2D" uid="uid://csfbbp0qhifhd" path="res://Scenes/Player/Sprite/Player_Death2.png" id="12_6533w"]
 [ext_resource type="Texture2D" uid="uid://1kv3u1upp4p6" path="res://Scenes/Player/Sprite/Player_Death3.png" id="13_5tvst"]
-[ext_resource type="Texture2D" uid="uid://1f765f0dmf76" path="res://Scenes/Player/Sprite/Player_walk1.png" id="14_0v64p"]
 [ext_resource type="Texture2D" uid="uid://qe62u7g8d0dn" path="res://Scenes/Player/Sprite/Player_Death4.png" id="14_mf356"]
-[ext_resource type="Texture2D" uid="uid://bunnpmn3orp7m" path="res://Scenes/Player/Sprite/Player_walk2.png" id="15_1pdxl"]
+[ext_resource type="Texture2D" uid="uid://4vhtjglrtyhh" path="res://Art/Sprites/Character.png" id="16_kpof4"]
 [ext_resource type="Texture2D" uid="uid://yfjgk6manumt" path="res://Scenes/Player/Sprite/Player_MoonKick1.png" id="19_e6mmx"]
 [ext_resource type="Texture2D" uid="uid://cxelbexwa4xop" path="res://Scenes/Player/Sprite/Player_MoonKick2.png" id="20_46css"]
 [ext_resource type="Script" path="res://Scripts/FiniteStateMachine.gd" id="21_54cjv"]
@@ -29,7 +25,6 @@
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/States/PlayerIdleState.gd" id="26_28u22"]
 [ext_resource type="Texture2D" uid="uid://cxbkohp8f4x48" path="res://Racket3.png" id="26_i18eh"]
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/States/PlayerAttackState.gd" id="27_j1lrx"]
-[ext_resource type="Texture2D" uid="uid://dyb5iqfj3tmwj" path="res://Art/Sprites/light.png" id="27_on0bn"]
 [ext_resource type="Texture2D" uid="uid://dne7i130i74dx" path="res://Art/Sprites/Racket2.png" id="28_0w37j"]
 [ext_resource type="LabelSettings" uid="uid://da8inon5cmt2r" path="res://Art/Fonts/pixelized_label.tres" id="28_5mc6f"]
 [ext_resource type="Script" path="res://Scripts/AttackData.gd" id="28_wb7jg"]
@@ -43,6 +38,26 @@
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_uky13"]
 polygon = PackedVector2Array(-2, -13, -8, -13, -10, -11, -10, -2, -4, 2, -4, 10, 5, 10, 5, 2, 10, -1, 10, -10, 8, -13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8aa33"]
+atlas = ExtResource("16_kpof4")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bwd85"]
+atlas = ExtResource("16_kpof4")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tvqx3"]
+atlas = ExtResource("16_kpof4")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_av1n6"]
+atlas = ExtResource("16_kpof4")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b4md5"]
+atlas = ExtResource("16_kpof4")
+region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vax36"]
 animations = [{
@@ -105,13 +120,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_8ujai")
-}, {
-"duration": 1.0,
-"texture": ExtResource("2_mad3e")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_608ps")
+"texture": SubResource("AtlasTexture_8aa33")
 }],
 "loop": true,
 "name": &"Idle",
@@ -133,10 +142,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("14_0v64p")
+"texture": SubResource("AtlasTexture_bwd85")
 }, {
 "duration": 1.0,
-"texture": ExtResource("15_1pdxl")
+"texture": SubResource("AtlasTexture_tvqx3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_av1n6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b4md5")
 }],
 "loop": true,
 "name": &"Walk",
@@ -144,8 +159,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_51img"]
-radius = 20.4825
-height = 60.3024
+radius = 34.5032
+height = 104.833
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_va11c"]
 animations = [{
@@ -248,13 +263,13 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AnimatedSprite2D/Hitboxes/Punch_Hitbox/hitboxShape:disabled")
+tracks/2/path = NodePath("AnimatedSprite2D/Hitboxes/Racket_Hitbox/hitboxShape:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.3, 0.7),
 "transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
+"update": 0,
 "values": [true, false, true]
 }
 
@@ -373,7 +388,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_wo7cn"]
 resource_name = "Walk"
-length = 0.4
+length = 0.6
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -394,10 +409,10 @@ tracks/1/path = NodePath("AnimatedSprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [0, 1]
+"values": [0, 1, 2, 3]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gtuut"]
@@ -413,6 +428,7 @@ _data = {
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "healthbar", "hit_particles") groups=["Player"]]
 top_level = true
 texture_filter = 1
+scale = Vector2(0.6, 0.6)
 floor_stop_on_slope = false
 floor_block_on_wall = false
 script = ExtResource("1_y5oq4")
@@ -440,7 +456,7 @@ occluder = SubResource("OccluderPolygon2D_uky13")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_vax36")
-animation = &"Attack"
+animation = &"Walk"
 
 [node name="HitParticlesCopy" parent="AnimatedSprite2D" instance=ExtResource("21_gooki")]
 position = Vector2(30, 10)
@@ -450,23 +466,22 @@ rotation = 0.0
 position = Vector2(19.6667, 8.6667)
 scale = Vector2(0.666667, 0.666667)
 
-[node name="Punch_Hitbox" type="Area2D" parent="AnimatedSprite2D/Hitboxes"]
+[node name="Racket_Hitbox" type="Area2D" parent="AnimatedSprite2D/Hitboxes"]
 position = Vector2(-18, -6)
 scale = Vector2(0.998526, 1.0779)
 
-[node name="hitboxShape" type="CollisionShape2D" parent="AnimatedSprite2D/Hitboxes/Punch_Hitbox"]
-position = Vector2(11.5647, 3.71087)
+[node name="hitboxShape" type="CollisionShape2D" parent="AnimatedSprite2D/Hitboxes/Racket_Hitbox"]
+position = Vector2(44.1126, 10.6688)
 shape = SubResource("CapsuleShape2D_51img")
-disabled = true
 debug_color = Color(0, 0.6, 0.701961, 1)
 
 [node name="RacketPivot" type="Node2D" parent="AnimatedSprite2D"]
-position = Vector2(8, 8)
+position = Vector2(16, 16)
 rotation = 1.56381
 
 [node name="Racket" type="Node2D" parent="AnimatedSprite2D/RacketPivot"]
-position = Vector2(-1, -12)
-scale = Vector2(0.75, 0.75)
+position = Vector2(-0.953426, -18.6665)
+scale = Vector2(1.25, 1.25)
 script = ExtResource("25_3uwa4")
 
 [node name="Particles" type="CPUParticles2D" parent="AnimatedSprite2D/RacketPivot/Racket"]
@@ -482,8 +497,8 @@ color = Color(0.305882, 0.831373, 0.760784, 1)
 
 [node name="Animation" type="AnimatedSprite2D" parent="AnimatedSprite2D/RacketPivot/Racket"]
 z_index = 100
-position = Vector2(-9.53674e-07, 3.8147e-06)
-scale = Vector2(0.292978, 0.292978)
+position = Vector2(0.0279465, -3.9999)
+scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_va11c")
 animation = &"Deactivated"
 
@@ -548,11 +563,6 @@ wait_time = 0.2
 script = ExtResource("30_ecf44")
 animator = NodePath("../../AnimationPlayer")
 
-[node name="PointLight2D2" type="PointLight2D" parent="."]
-energy = 0.3
-shadow_enabled = true
-texture = ExtResource("27_on0bn")
-
 [node name="Camera2D" type="Camera2D" parent="."]
 scale = Vector2(2, 2)
 zoom = Vector2(2, 2)
@@ -562,10 +572,10 @@ position_smoothing_speed = 15.0
 [node name="ProgressBar" type="ProgressBar" parent="Camera2D"]
 light_mask = 2
 visibility_layer = 2
-offset_left = -140.0
-offset_top = 75.0
-offset_right = -134.0
-offset_bottom = 139.0
+offset_left = -225.0
+offset_top = 125.0
+offset_right = -219.0
+offset_bottom = 189.0
 rotation = -1.57079
 theme_override_styles/background = SubResource("StyleBoxFlat_ub6e5")
 theme_override_styles/fill = SubResource("StyleBoxFlat_0guox")
@@ -575,10 +585,10 @@ fill_mode = 2
 show_percentage = false
 
 [node name="Label" type="Label" parent="Camera2D"]
-offset_left = -140.0
-offset_top = 56.0
-offset_right = -94.0
-offset_bottom = 69.0
+offset_left = -225.0
+offset_top = 106.0
+offset_right = -179.0
+offset_bottom = 119.0
 text = "Health"
 label_settings = ExtResource("28_5mc6f")
 
@@ -624,8 +634,8 @@ uppercase = true
 [node name="AttackTimeout" type="Timer" parent="."]
 wait_time = 0.8
 
-[connection signal="area_entered" from="AnimatedSprite2D/Hitboxes/Punch_Hitbox" to="." method="_on_hitbox_body_entered"]
-[connection signal="body_entered" from="AnimatedSprite2D/Hitboxes/Punch_Hitbox" to="." method="_on_hitbox_body_entered"]
-[connection signal="body_entered" from="AnimatedSprite2D/Hitboxes/Punch_Hitbox" to="FSM/Idle" method="_on_hitbox_body_entered"]
+[connection signal="area_entered" from="AnimatedSprite2D/Hitboxes/Racket_Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_entered" from="AnimatedSprite2D/Hitboxes/Racket_Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_entered" from="AnimatedSprite2D/Hitboxes/Racket_Hitbox" to="FSM/Idle" method="_on_hitbox_body_entered"]
 [connection signal="timeout" from="FSM/Moving/DashTimer" to="FSM/Moving" method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="AttackTimeout" to="." method="_on_attack_timeout_timeout"]

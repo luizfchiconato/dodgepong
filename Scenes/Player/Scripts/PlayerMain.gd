@@ -7,8 +7,8 @@ class_name PlayerMain
 @onready var racketPivot = $AnimatedSprite2D/RacketPivot as Node2D
 @onready var trail = $AnimatedSprite2D/RacketPivot/Racket/Marker2D/Trail2D as Line2D
 @onready var racketParticles = $AnimatedSprite2D/RacketPivot/Racket/Particles as CPUParticles2D
-@onready var hitbox = $AnimatedSprite2D/Hitboxes/Punch_Hitbox as Node2D
-@onready var hitboxShape = $AnimatedSprite2D/Hitboxes/Punch_Hitbox/hitboxShape as CollisionShape2D
+@onready var hitbox = $AnimatedSprite2D/Hitboxes/Racket_Hitbox as Node2D
+@onready var hitboxShape = $AnimatedSprite2D/Hitboxes/Racket_Hitbox/hitboxShape as CollisionShape2D
 @onready var racketAnimator = $AnimatedSprite2D/RacketPivot/Racket/Animation as AnimatedSprite2D
 
 const DEATH_SCREEN = preload("res://Scenes/DeathScreen.tscn")

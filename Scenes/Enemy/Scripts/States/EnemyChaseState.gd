@@ -17,6 +17,6 @@ func Update(_delta):
 	body.velocity = chase_direction.normalized() * move_speed
 	body.move_and_slide()
 	
-	if(chase_direction.length() <= attack_range):
-		state_transition.emit(self, "enemy_attack_state")
+	#if(chase_direction.length() <= attack_range):
+	#	state_transition.emit(self, "enemy_attack_state")
 		

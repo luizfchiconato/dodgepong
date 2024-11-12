@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://bvt7e871e6jeg"]
+[gd_scene load_steps=46 format=3 uid="uid://bvt7e871e6jeg"]
 
 [ext_resource type="Texture2D" uid="uid://d3u5e5gpffpwe" path="res://Scenes/Enemy/Sprites/Enemy09.png" id="1_chwbu"]
 [ext_resource type="Script" path="res://Scenes/Enemy/Scripts/EnemyMain.gd" id="1_db41y"]
@@ -14,12 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://cih5p1npr3l12" path="res://Scenes/Enemy/Sprites/Enemy20.png" id="11_4tadt"]
 [ext_resource type="Texture2D" uid="uid://bciwyh2xk1t0w" path="res://Scenes/Enemy/Sprites/Enemy21.png" id="12_kwtv6"]
 [ext_resource type="Texture2D" uid="uid://plb1yuj4g11y" path="res://Scenes/Enemy/Sprites/Enemy22.png" id="13_hsklp"]
-[ext_resource type="Texture2D" uid="uid://b1jgsdcltjrqk" path="res://Scenes/Enemy/Sprites/Enemy01.png" id="14_bkisf"]
-[ext_resource type="Texture2D" uid="uid://c5gpy870qdxmv" path="res://Scenes/Enemy/Sprites/Enemy02.png" id="15_d1pal"]
-[ext_resource type="Texture2D" uid="uid://bgmhcj1gi6xrs" path="res://Scenes/Enemy/Sprites/Enemy03.png" id="16_r5o5g"]
-[ext_resource type="Texture2D" uid="uid://btd7l6bo1arg4" path="res://Scenes/Enemy/Sprites/Enemy04.png" id="17_6lifq"]
-[ext_resource type="Texture2D" uid="uid://wrtjha73ctxn" path="res://Scenes/Enemy/Sprites/Enemy06.png" id="18_gw8il"]
-[ext_resource type="Texture2D" uid="uid://cjckvbu5dwn7e" path="res://Scenes/Enemy/Sprites/Enemy07.png" id="19_cja05"]
+[ext_resource type="Texture2D" uid="uid://cx5lg2vttffr7" path="res://Art/Sprites/BaseEnemy.png" id="15_4ab4f"]
 [ext_resource type="PackedScene" uid="uid://b82yimbxiflml" path="res://Art/Particles/hit_particles.tscn" id="21_d5isq"]
 [ext_resource type="Script" path="res://Scripts/FiniteStateMachine.gd" id="21_mb2dn"]
 [ext_resource type="Script" path="res://Scenes/Enemy/Scripts/States/EnemyIdleState.gd" id="21_mks5l"]
@@ -28,6 +23,26 @@
 [ext_resource type="Script" path="res://Scripts/AttackData.gd" id="26_b28qd"]
 [ext_resource type="Texture2D" uid="uid://bw36ig60cpuaq" path="res://Art/Sprites/Square.png" id="27_0oljh"]
 [ext_resource type="Script" path="res://Scenes/Enemy/Scripts/States/EnemyDeathState.gd" id="27_m2jmx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qa010"]
+atlas = ExtResource("15_4ab4f")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nkj10"]
+atlas = ExtResource("15_4ab4f")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ri45"]
+atlas = ExtResource("15_4ab4f")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_chn1j"]
+atlas = ExtResource("15_4ab4f")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40cqo"]
+atlas = ExtResource("15_4ab4f")
+region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_toimg"]
 animations = [{
@@ -85,16 +100,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("14_bkisf")
-}, {
-"duration": 1.0,
-"texture": ExtResource("15_d1pal")
-}, {
-"duration": 1.0,
-"texture": ExtResource("16_r5o5g")
-}, {
-"duration": 1.0,
-"texture": ExtResource("17_6lifq")
+"texture": SubResource("AtlasTexture_qa010")
 }],
 "loop": true,
 "name": &"Idle",
@@ -102,10 +108,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("18_gw8il")
+"texture": SubResource("AtlasTexture_nkj10")
 }, {
 "duration": 1.0,
-"texture": ExtResource("19_cja05")
+"texture": SubResource("AtlasTexture_6ri45")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_chn1j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_40cqo")
 }],
 "loop": true,
 "name": &"Walk",
@@ -120,11 +132,11 @@ cull_mode = 2
 polygon = PackedVector2Array(3, -8, 6.5, -4, 7.5, 3.5, 4.5, 10, -1.5, 10.5, -6, 4, -4.5, -6, -1, -8.5)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4mbmt"]
-radius = 7.0
-height = 24.0
+radius = 9.0
+height = 54.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_imcar"]
-radius = 87.4371
+radius = 172.142
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x6b3o"]
 bg_color = Color(0.0352941, 0.0156863, 0.00784314, 0.427451)
@@ -209,7 +221,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_vh18e"]
 resource_name = "Chasing"
-length = 0.4
+length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -230,10 +242,10 @@ tracks/1/path = NodePath("AnimatedSprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [0, 1]
+"values": [0, 1, 2, 3]
 }
 
 [sub_resource type="Animation" id="Animation_1r6mx"]
@@ -313,9 +325,16 @@ _data = {
 "Idle": SubResource("Animation_lw05y")
 }
 
+[sub_resource type="Animation" id="Animation_c62rr"]
+resource_name = "frame"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eurcw"]
+_data = {
+"frame": SubResource("Animation_c62rr")
+}
+
 [node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") groups=["Enemy"]]
 texture_filter = 1
-scale = Vector2(2, 2)
 script = ExtResource("1_db41y")
 attack_node = NodePath("FSM/enemy_attack_state")
 chase_node = NodePath("FSM/enemy_chase_state")
@@ -327,13 +346,14 @@ hit_particles = NodePath("HitParticles")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_toimg")
-animation = &"Death"
+animation = &"Walk"
 autoplay = "Idle"
 
 [node name="HitBox" type="Area2D" parent="AnimatedSprite2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/HitBox"]
 position = Vector2(-11.5, 0.75)
+rotation = 0.00228987
 shape = SubResource("RectangleShape2D_cqf5a")
 disabled = true
 
@@ -379,9 +399,9 @@ animator = NodePath("../../AnimationPlayer")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 offset_left = -14.0
-offset_top = -9.5
-offset_right = -11.0
-offset_bottom = 17.5
+offset_top = -31.5
+offset_right = -12.0
+offset_bottom = -4.5
 rotation = -1.57079
 theme_override_styles/background = SubResource("StyleBoxFlat_x6b3o")
 theme_override_styles/fill = SubResource("StyleBoxFlat_w435t")
@@ -407,6 +427,11 @@ autoplay = "Idle"
 [node name="BulletTimer" type="Timer" parent="."]
 wait_time = 2.0
 autostart = true
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_eurcw")
+}
 
 [connection signal="body_entered" from="AnimatedSprite2D/HitBox" to="FSM/enemy_attack_state" method="_on_hit_box_body_entered"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
