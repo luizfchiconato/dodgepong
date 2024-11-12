@@ -6,9 +6,10 @@ class_name PlayerMain
 @onready var animatedSprite = $AnimatedSprite2D as AnimatedSprite2D
 @onready var racketPivot = $AnimatedSprite2D/RacketPivot as Node2D
 @onready var trail = $AnimatedSprite2D/RacketPivot/Racket/Marker2D/Trail2D as Line2D
-@onready var particles = $AnimatedSprite2D/RacketPivot/Racket/Particles as CPUParticles2D
+@onready var racketParticles = $AnimatedSprite2D/RacketPivot/Racket/Particles as CPUParticles2D
 @onready var hitbox = $AnimatedSprite2D/Hitboxes/Punch_Hitbox as Node2D
 @onready var hitboxShape = $AnimatedSprite2D/Hitboxes/Punch_Hitbox/hitboxShape as CollisionShape2D
+@onready var racketAnimator = $AnimatedSprite2D/RacketPivot/Racket/Animation as AnimatedSprite2D
 
 const DEATH_SCREEN = preload("res://Scenes/DeathScreen.tscn")
 
@@ -34,16 +35,16 @@ func _physics_process(delta: float) -> void:
 	if attacking == true:
 		racketPivot.rotation += 20 * delta
 		#trail.visible = true
-		if particles.amount != 1200:
-			particles.amount = 1200
-			particles.spread = 50
+		if racketParticles.amount != 1200:
+			racketParticles.amount = 1200
+			racketParticles.spread = 50
 	else:
 		hitbox.rotation = getRacketAngle() - 90
 		racketPivot.rotation = getRacketAngle()
 		#trail.visible = false
-		if particles.amount != 30:
-			particles.amount = 30
-			particles.spread = 23
+		if racketParticles.amount != 30:
+			racketParticles.amount = 30
+			racketParticles.spread = 23
 
 func turn():
 	#var direction = -1 if flipped_horizontal == true else 1
@@ -76,16 +77,8 @@ func attack():
 	
 	attacking = true
 	AudioManager.play_sound(AudioManager.PLAYER_ATTACK_SWING, 0.3, 1)
-
-func deactivateAttack():
-	attacking = false
-	if (!hitInAttack):
-		canAttack = false
-		$AttackTimeout.start()
-	hitInAttack = false
 	
 func _on_hitbox_body_entered(body):
-	
 	if (!attacking):
 		return
 
@@ -138,6 +131,21 @@ func frameFeeze(timeScale, duration):
 	await get_tree().create_timer(duration * timeScale).timeout
 	Engine.time_scale = 1
 
+func activateAttack():
+	canAttack = true
+	racketParticles.visible = true
+	trail.visible = true
+	racketAnimator.play("Default")
+	
+func deactivateAttack():
+	attacking = false
+	if (!hitInAttack):
+		canAttack = false
+		$AttackTimeout.start()
+		racketParticles.visible = false
+		racketAnimator.play("Deactivated")
+		trail.visible = false
+	hitInAttack = false
 
 func _on_attack_timeout_timeout():
-	canAttack = true
+	activateAttack()

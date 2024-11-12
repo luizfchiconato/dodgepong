@@ -8,7 +8,7 @@ var converted = false
 var previousConverted = false
 var explodable = true
 
-var explodingBulletsQuantity = 15
+var explodingBulletsQuantity = 10
 
 const Bullet = preload("res://Scenes/Projectiles/Bullet.tscn")
 var Player = preload("res://Scenes/Player/Player.tscn")
@@ -32,7 +32,7 @@ func _physics_process(delta):
 
 func _on_body_entered(body):
 	if body.is_in_group("Player") and !converted:
-		var player = get_tree().get_first_node_in_group("Player") as CharacterBody2D
+		var player = get_tree().get_first_node_in_group("Player") as PlayerMain
 		if player.is_dashing():
 			return
 		deal_damage_to_player(body)

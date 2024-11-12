@@ -3,6 +3,7 @@ class_name EnemyMain
 
 @onready var fsm = $FSM as FiniteStateMachine
 var player_in_range = false
+var rng = RandomNumberGenerator.new()
 
 @export var attack_node : Node
 @export var chase_node : Node
@@ -52,6 +53,8 @@ func _ready():
 
 func _on_bullet_timer_timeout():
 	createBullet()
+	var my_random_number = rng.randf_range(1.5, 2)
+	$BulletTimer.wait_time = my_random_number
 	$BulletTimer.start()
 	return true
 

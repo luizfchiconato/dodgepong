@@ -1,25 +1,31 @@
 extends State
 class_name PlayerWalking
 
+@onready var dashParticles = $DashParticles as CPUParticles2D
+@onready var sprite = $Player/AnimatedSprite2D as AnimatedSprite2D
+
 @export var movespeed := int(350)
 @export var dash_max := int(400)
 var dashspeed := int(100)
-var can_dash := bool(false)
+var can_dash := bool(true)
 var dash_direction := Vector2(0,0)
 var is_dashing = false
 
 var player : CharacterBody2D
 @export var animator : AnimationPlayer
 
+
 func Enter():
-	player = get_tree().get_first_node_in_group("Player")
+	player = get_tree().get_nodes_in_group("Player")[0] 
 	animator.play("Walk")
 
 func Update(delta : float):
 	var input_dir = Input.get_vector("MoveLeft", "MoveRight", "MoveUp", "MoveDown").normalized()
-	
+
 	Move(input_dir)
-	LessenDash(delta)
+	#LessenDash(delta)
+	
+	print(can_dash)
 
 	if(Input.is_action_just_pressed("Dash") && can_dash):
 		start_dash(input_dir)
@@ -30,12 +36,13 @@ func Update(delta : float):
 	
 func Move(input_dir):
 	#Suddenly turning mid dash
-	if(dash_direction != Vector2.ZERO and dash_direction != input_dir):
-		dash_direction = Vector2.ZERO
-		dashspeed = 0
+	#if(dash_direction != Vector2.ZERO and dash_direction != input_dir):
+		#dashspeed = 0
+		#endDash()
 
 	player.velocity = input_dir * movespeed + dash_direction * dashspeed 
 	player.move_and_slide()
+	dashParticles.global_position = player.global_position
 
 	if(input_dir.length() <= 0):
 		Transition("Idle")
@@ -46,27 +53,25 @@ func start_dash(input_dir):
 	animator.play("Dash")
 	can_dash = false
 	is_dashing = true
-
-func LessenDash(delta):
-	#Higher multiplier values makes the dash shorter
-	var multiplier = 6.0
-	var timemultiplier = 10.1
-	
-	#slow down the dash over time, both as a fraction of dashspeed and also time
-	#While clamping it between 0 and dash_max
-	dashspeed -= (dashspeed * multiplier * delta) + (delta * timemultiplier)
-	dashspeed = clamp(dashspeed, 0, dash_max)
-	
-	if(dashspeed <= 0):
-		is_dashing = false
-		can_dash = true
-		dash_direction = Vector2.ZERO
-		
-	if(animator.current_animation == "Dash"):
-		await animator.animation_finished
-		animator.play("Walk")
+	dashParticles.emitting = true
+	$DashTimer.start()
+	#sprite.set_self_modulate(Color.DARK_BLUE)
 
 #We cannot allow a transition before the dash is complete and the animation has stopped playing
 func Transition(newstate):
-	if(dashspeed <= 0):
+	if(is_dashing == false):
 		state_transition.emit(self, newstate)
+
+
+func _on_dash_timer_timeout():
+	endDash()
+
+func endDash():
+	dashParticles.emitting = false
+	is_dashing = false
+	can_dash = true
+	dash_direction = Vector2.ZERO
+	
+	if(animator.current_animation == "Dash"):
+		await animator.animation_finished
+		animator.play("Walk")

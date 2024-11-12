@@ -159,6 +159,7 @@ label_settings = ExtResource("7_tuycv")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_87j7f")
 volume_db = -1.0
+autoplay = true
 
 [node name="QuestStart" parent="." node_paths=PackedStringArray("quest") instance=ExtResource("13_fd737")]
 visible = false
