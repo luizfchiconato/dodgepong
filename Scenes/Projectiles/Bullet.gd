@@ -10,8 +10,8 @@ var explodable = true
 
 var explodingBulletsQuantity = 10
 
-const Bullet = preload("res://Scenes/Projectiles/Bullet.tscn")
-var Player = preload("res://Scenes/Player/Player.tscn")
+var Bullet = load("res://Scenes/Projectiles/Bullet.tscn")
+var Player = load("res://Scenes/Player/Player.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,7 +20,12 @@ func _ready():
 	if (velocity == Vector2.ZERO):
 		var target_pos = player.global_position
 		self.rotation = target_pos.angle()
-		velocity = self.global_position.direction_to(target_pos)
+		
+		var x_entropy = RandomNumberGenerator.new().randf_range(-30, 30)
+		var y_entropy = RandomNumberGenerator.new().randf_range(-30, 30)
+		
+		var end_position = Vector2(target_pos.x + x_entropy, target_pos.y + y_entropy)
+		velocity = self.global_position.direction_to(end_position)
 
 func _physics_process(delta):
 	self.global_position += velocity * speed * delta

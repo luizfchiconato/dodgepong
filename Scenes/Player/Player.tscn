@@ -235,7 +235,7 @@ alpha_curve = SubResource("CurveTexture_j105i")
 
 [sub_resource type="Animation" id="Animation_jtcnw"]
 resource_name = "Attack"
-length = 0.3
+length = 1.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -456,7 +456,7 @@ occluder = SubResource("OccluderPolygon2D_uky13")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_vax36")
-animation = &"Walk"
+animation = &"Attack"
 
 [node name="HitParticlesCopy" parent="AnimatedSprite2D" instance=ExtResource("21_gooki")]
 position = Vector2(30, 10)
@@ -473,6 +473,7 @@ scale = Vector2(0.998526, 1.0779)
 [node name="hitboxShape" type="CollisionShape2D" parent="AnimatedSprite2D/Hitboxes/Racket_Hitbox"]
 position = Vector2(44.1126, 10.6688)
 shape = SubResource("CapsuleShape2D_51img")
+disabled = true
 debug_color = Color(0, 0.6, 0.701961, 1)
 
 [node name="RacketPivot" type="Node2D" parent="AnimatedSprite2D"]
@@ -565,17 +566,17 @@ animator = NodePath("../../AnimationPlayer")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 scale = Vector2(2, 2)
-zoom = Vector2(2, 2)
+zoom = Vector2(1.6, 1.6)
 position_smoothing_enabled = true
 position_smoothing_speed = 15.0
 
 [node name="ProgressBar" type="ProgressBar" parent="Camera2D"]
 light_mask = 2
 visibility_layer = 2
-offset_left = -225.0
-offset_top = 125.0
-offset_right = -219.0
-offset_bottom = 189.0
+offset_left = -303.333
+offset_top = 166.5
+offset_right = -297.333
+offset_bottom = 230.5
 rotation = -1.57079
 theme_override_styles/background = SubResource("StyleBoxFlat_ub6e5")
 theme_override_styles/fill = SubResource("StyleBoxFlat_0guox")
@@ -585,10 +586,10 @@ fill_mode = 2
 show_percentage = false
 
 [node name="Label" type="Label" parent="Camera2D"]
-offset_left = -225.0
-offset_top = 106.0
-offset_right = -179.0
-offset_bottom = 119.0
+offset_left = -303.333
+offset_top = 147.5
+offset_right = -257.333
+offset_bottom = 160.5
 text = "Health"
 label_settings = ExtResource("28_5mc6f")
 

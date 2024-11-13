@@ -1,0 +1,256 @@
+[gd_scene load_steps=27 format=3 uid="uid://d2nthv7le704p"]
+
+[ext_resource type="Texture2D" uid="uid://vdxgbskmudf6" path="res://Art/Sprites/BowlingBall.png" id="1_10r8i"]
+[ext_resource type="Script" path="res://Scenes/BowlingBall/BowlingBall.gd" id="1_73p8w"]
+[ext_resource type="Texture2D" uid="uid://dco05senpw6wm" path="res://Art/Sprites/Explosion.png" id="3_m01tq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dtitn"]
+atlas = ExtResource("1_10r8i")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pped8"]
+atlas = ExtResource("1_10r8i")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qijar"]
+atlas = ExtResource("1_10r8i")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cnp4c"]
+atlas = ExtResource("1_10r8i")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x1i1q"]
+atlas = ExtResource("1_10r8i")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jgoqc"]
+atlas = ExtResource("1_10r8i")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_phncl"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dtitn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pped8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qijar")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cnp4c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x1i1q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jgoqc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3fuda"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o3xnk"]
+radius = 27.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_rk0r4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_64qek"]
+radius = 217.077
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ngrvn"]
+atlas = ExtResource("3_m01tq")
+region = Rect2(768, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38bia"]
+atlas = ExtResource("3_m01tq")
+region = Rect2(384, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ifaqb"]
+atlas = ExtResource("3_m01tq")
+region = Rect2(0, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8jid2"]
+atlas = ExtResource("3_m01tq")
+region = Rect2(192, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dk876"]
+atlas = ExtResource("3_m01tq")
+region = Rect2(384, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cfs17"]
+atlas = ExtResource("3_m01tq")
+region = Rect2(576, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iir3o"]
+atlas = ExtResource("3_m01tq")
+region = Rect2(768, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_111ww"]
+atlas = ExtResource("3_m01tq")
+region = Rect2(0, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ntoi"]
+atlas = ExtResource("3_m01tq")
+region = Rect2(192, 192, 192, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sbtgc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ngrvn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_38bia")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ifaqb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8jid2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dk876")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cfs17")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iir3o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_111ww")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ntoi")
+}],
+"loop": true,
+"name": &"exploding",
+"speed": 10.0
+}]
+
+[sub_resource type="Animation" id="Animation_2mh74"]
+resource_name = "exploding"
+length = 1.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"exploding"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.02, 0.23, 0.998906),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.32, 0.44, 0.595429, 0.749727, 0.899672, 1.06267, 1.22785),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_36ihq"]
+_data = {
+"exploding": SubResource("Animation_2mh74")
+}
+
+[node name="BowlingBall" type="Area2D" node_paths=PackedStringArray("bomb_animator")]
+z_index = 20
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_73p8w")
+bomb_animator = NodePath("ExplosionRadius/AnimationPlayer")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0, 0, 0, 0.827451)
+z_index = -20
+scale = Vector2(1.946, 1.5)
+sprite_frames = SubResource("SpriteFrames_phncl")
+frame_progress = 0.644474
+
+[node name="Body" type="Area2D" parent="."]
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Body"]
+scale = Vector2(1.94643, 1.94643)
+sprite_frames = SubResource("SpriteFrames_phncl")
+frame_progress = 0.579641
+
+[node name="BodyCollision" type="CollisionShape2D" parent="Body"]
+shape = SubResource("CircleShape2D_3fuda")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Body"]
+amount = 20
+emission_shape = 1
+emission_sphere_radius = 19.3
+gravity = Vector2(0, 0)
+initial_velocity_min = 27.4
+initial_velocity_max = 59.36
+angular_velocity_min = 4.75
+angular_velocity_max = 444.72
+scale_amount_max = 2.0
+color = Color(0.972549, 0.164706, 0.164706, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_o3xnk")
+
+[node name="ExplosionRadius" type="Area2D" parent="."]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="ExplosionRadius"]
+modulate = Color(0.972549, 0.164706, 0.164706, 0.0666667)
+z_index = -3
+position = Vector2(1.78814e-07, 0)
+scale = Vector2(445.505, 445.679)
+mesh = SubResource("SphereMesh_rk0r4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionRadius"]
+position = Vector2(-7.62939e-06, 0)
+scale = Vector2(1, 1)
+shape = SubResource("CircleShape2D_64qek")
+disabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ExplosionRadius"]
+position = Vector2(0.833324, 0.833324)
+scale = Vector2(2.31771, 2.31771)
+sprite_frames = SubResource("SpriteFrames_sbtgc")
+animation = &"exploding"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ExplosionRadius"]
+libraries = {
+"": SubResource("AnimationLibrary_36ihq")
+}
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
+[connection signal="body_entered" from="ExplosionRadius" to="." method="_on_explosion_radius_body_entered"]

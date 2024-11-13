@@ -10,7 +10,13 @@ var rng = RandomNumberGenerator.new()
 
 @export var bullet_interval: float = 2
 
-const Bullet = preload("res://Scenes/Projectiles/Bullet.tscn")
+@export_enum("Normal:0", "Bowling:1") var enemy_type: int
+
+const TYPE_NORMAL = 0
+const TYPE_BOWLING = 1
+
+var Bullet = load("res://Scenes/Projectiles/Bullet.tscn")
+var BowlingBall = load("res://Scenes/BowlingBall/BowlingBall.tscn")
 
 #After finishing an attack, we return here to determine our next action based on the players proximity
 func finished_attacking():
@@ -53,12 +59,32 @@ func _ready():
 
 func _on_bullet_timer_timeout():
 	createBullet()
-	var my_random_number = rng.randf_range(1.5, 2)
+	var my_random_number
+
+	if (enemy_type == TYPE_BOWLING):
+		my_random_number = rng.randf_range(1.5, 2.75)
+	else:
+		my_random_number = rng.randf_range(1.5, 2)
+
 	$BulletTimer.wait_time = my_random_number
 	$BulletTimer.start()
 	return true
 
 func createBullet():
+	if (enemy_type == TYPE_BOWLING):
+		createBowlingBall()
+	else:
+		createDefaultBall()
+	
+func createBowlingBall():
+	var bullet := BowlingBall.instantiate() as BowlingBall
+	bullet.global_position = global_position
+	# bullet.ground_velocity = Vector2(100, 120)
+	bullet.vertical_velocity = 10
+	bullet.set_as_top_level(true)
+	get_tree().root.add_child(bullet)
+	
+func createDefaultBall():
 	var bullet := Bullet.instantiate() as Bullet
 	bullet.global_position = global_position
 	bullet.set_as_top_level(true)

@@ -10,6 +10,7 @@ const BLOODY_HIT = preload("res://Art/Audio/Effects/bloody_hit.ogg")
 const COIN_PICK = preload("res://Art/Audio/Effects/coin_pick.ogg")
 const QUEST_SOUND = preload("res://Art/Audio/Effects/QuestSound.ogg")
 const BALL_HIT = preload("res://Art/Audio/Effects/BallHit.ogg")
+const BOWLING_FALL = preload("res://Art/Audio/Effects/BowlingFall.ogg")
 
 #endregion
 var audio_player : AudioStreamPlayer 

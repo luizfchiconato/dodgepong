@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dei3j88yw6omf"]
+[gd_scene load_steps=17 format=3 uid="uid://dei3j88yw6omf"]
 
 [ext_resource type="PackedScene" uid="uid://bvg5dny32iw0x" path="res://Scenes/Player/Player.tscn" id="1_v023b"]
 [ext_resource type="PackedScene" uid="uid://bvt7e871e6jeg" path="res://Scenes/Enemy/Enemy.tscn" id="2_gsqk0"]
@@ -16,10 +16,6 @@
 [ext_resource type="PackedScene" uid="uid://48vtm5vekhaq" path="res://Scenes/QuestUpdate.tscn" id="13_fd737"]
 [ext_resource type="Script" path="res://Scripts/QuestGeneral/Quest.gd" id="14_itxyw"]
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_n3tw7"]
-a = Vector2(17, 3)
-b = Vector2(-11, 3)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gtoj4"]
 size = Vector2(25, 30)
 
@@ -34,19 +30,31 @@ health = 30
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Enemy" parent="Enemies" instance=ExtResource("2_gsqk0")]
-position = Vector2(176, 193)
+position = Vector2(-192, 183)
+health = 60
 
 [node name="Enemy2" parent="Enemies" instance=ExtResource("2_gsqk0")]
 position = Vector2(-262, -96)
+enemy_type = 1
+health = 60
 
 [node name="Enemy3" parent="Enemies" instance=ExtResource("2_gsqk0")]
 position = Vector2(161, -77)
-
-[node name="Enemy4" parent="Enemies" instance=ExtResource("2_gsqk0")]
-position = Vector2(-243, -63)
+health = 60
 
 [node name="Enemy5" parent="Enemies" instance=ExtResource("2_gsqk0")]
 position = Vector2(-29, -102)
+health = 60
+
+[node name="Enemy6" parent="Enemies" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("2_gsqk0")]
+position = Vector2(106, 177)
+attack_node = NodePath("../Enemy5/FSM/enemy_attack_state")
+chase_node = NodePath("../Enemy5/FSM/enemy_chase_state")
+enemy_type = 1
+sprite = NodePath("../Enemy5/AnimatedSprite2D")
+healthbar = NodePath("../Enemy5/ProgressBar")
+health = 60
+hit_particles = NodePath("../Enemy5/HitParticles")
 
 [node name="Pickups" type="Node" parent="."]
 
@@ -129,13 +137,6 @@ position = Vector2(176, 10)
 energy = 0.8
 shadow_enabled = true
 texture = ExtResource("5_numcg")
-
-[node name="DoorBlock" type="StaticBody2D" parent="Scene"]
-position = Vector2(13, 9)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Scene/DoorBlock"]
-position = Vector2(0, -7)
-shape = SubResource("SegmentShape2D_n3tw7")
 
 [node name="AreaExit" type="Area2D" parent="Scene"]
 position = Vector2(-49, -135)

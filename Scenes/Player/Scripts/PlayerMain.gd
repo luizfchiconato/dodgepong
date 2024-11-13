@@ -108,8 +108,8 @@ func _take_damage(amount):
 	healthbar.value = health;
 	damage_effects()
 	
-	if(health <= 0):
-		_die()
+	#if(health <= 0):
+		#_die()
 
 func is_dashing():
 	print(moving.is_dashing)
