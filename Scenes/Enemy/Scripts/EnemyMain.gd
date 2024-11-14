@@ -10,7 +10,11 @@ var rng = RandomNumberGenerator.new()
 
 @export var bullet_interval: float = 2
 
+@export var wait_for_deaths: int = 0
+
 @export_enum("Normal:0", "Bowling:1") var enemy_type: int
+
+signal died
 
 const TYPE_NORMAL = 0
 const TYPE_BOWLING = 1
@@ -42,6 +46,7 @@ func _on_detection_area_body_exited(body):
 func _die():
 	super() #calls _die() on base-class CharacterBase
 	fsm.force_change_state("enemy_death_state")
+	emit_signal("die")
 
 func _take_damage(amount):
 	if(invincible == true || is_dead == true):
@@ -49,7 +54,10 @@ func _take_damage(amount):
 		
 	health -= amount
 	healthbar.value = health;
+	
 	damage_effects()
+	
+	$HealthBar.removeHealth(amount)
 	
 	if(health <= 0):
 		_die()
@@ -71,6 +79,10 @@ func _on_bullet_timer_timeout():
 	return true
 
 func createBullet():
+	#var death_number = get_parent().get_parent().death_number
+	#if (death_number < wait_for_deaths):
+	#	return
+	
 	if (enemy_type == TYPE_BOWLING):
 		createBowlingBall()
 	else:
@@ -82,6 +94,7 @@ func createBowlingBall():
 	# bullet.ground_velocity = Vector2(100, 120)
 	bullet.vertical_velocity = 10
 	bullet.set_as_top_level(true)
+	bullet.parent_enemy = self
 	get_tree().root.add_child(bullet)
 	
 func createDefaultBall():

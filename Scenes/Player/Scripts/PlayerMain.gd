@@ -85,7 +85,10 @@ func _on_hitbox_body_entered(body):
 	if body is Bullet:
 		hitInAttack = true
 		reflectBullet(body)
-		
+	
+	if body is BowlingBall:
+		hitInAttack = true
+		reflectBowlingBall(body)
 
 func reflectBullet(body):
 	if (!body.converted):
@@ -93,6 +96,12 @@ func reflectBullet(body):
 		body.converted = true
 		frameFeeze(0.05, 0.5)
 		AudioManager.play_sound(AudioManager.PLAYER_ATTACK_HIT, 4, 5, 0.7)
+
+func reflectBowlingBall(body):
+	if (!body.converted and body.can_deflect):
+		body.converted = true
+		frameFeeze(0.05, 0.5)
+		AudioManager.play_sound(AudioManager.PLAYER_ATTACK_HIT, 4, 5, 0.4)
 
 	#if body.is_in_group("Enemy"):
 	#	#frameFeeze(0.05, 0.9)
@@ -108,11 +117,14 @@ func _take_damage(amount):
 	healthbar.value = health;
 	damage_effects()
 	
-	#if(health <= 0):
-		#_die()
+	$HealthBar.removeHealth(amount)
+	
+	AudioManager.play_sound(AudioManager.PLAYER_HURT, 0, 0)
+	
+	if(health <= 0):
+		_die()
 
 func is_dashing():
-	print(moving.is_dashing)
 	return moving.is_dashing
 
 func deal_damage(enemy : EnemyMain):

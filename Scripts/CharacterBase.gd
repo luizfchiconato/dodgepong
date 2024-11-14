@@ -41,7 +41,7 @@ func Turn():
 
 #Play universal damage sound effect for any character taking damage and flashing red
 func damage_effects():
-	AudioManager.play_sound(AudioManager.BALL_HIT, 0, -20)
+	#AudioManager.play_sound(audio, 0, pitch)
 	#AudioManager.play_sound(AudioManager.BLOODY_HIT, 0, -3)
 	after_damage_iframes()
 	if(hit_particles):

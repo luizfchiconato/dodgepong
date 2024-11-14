@@ -25,7 +25,6 @@ func Update(delta : float):
 	Move(input_dir)
 	#LessenDash(delta)
 	
-	print(can_dash)
 
 	if(Input.is_action_just_pressed("Dash") && can_dash):
 		start_dash(input_dir)

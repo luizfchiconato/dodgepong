@@ -13,6 +13,9 @@ var explodingBulletsQuantity = 10
 var Bullet = load("res://Scenes/Projectiles/Bullet.tscn")
 var Player = load("res://Scenes/Player/Player.tscn")
 
+const DAMAGE_LARGE_BULLET = 2
+const DAMAGE_SMALL_BULLET = 1
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var player = get_tree().get_first_node_in_group("Player") as CharacterBody2D
@@ -21,8 +24,8 @@ func _ready():
 		var target_pos = player.global_position
 		self.rotation = target_pos.angle()
 		
-		var x_entropy = RandomNumberGenerator.new().randf_range(-30, 30)
-		var y_entropy = RandomNumberGenerator.new().randf_range(-30, 30)
+		var x_entropy = RandomNumberGenerator.new().randf_range(-15, 15)
+		var y_entropy = RandomNumberGenerator.new().randf_range(-15, 15)
 		
 		var end_position = Vector2(target_pos.x + x_entropy, target_pos.y + y_entropy)
 		velocity = self.global_position.direction_to(end_position)
@@ -49,10 +52,14 @@ func _on_body_entered(body):
 #Connect and deal damage to the player
 func deal_damage_to_player(player : PlayerMain):
 	if !player.attacking:
-		player._take_damage(6)
+		var damage = DAMAGE_SMALL_BULLET if !explodable else DAMAGE_LARGE_BULLET
+		print("damage", damage)
+		player._take_damage(damage)
 
 func deal_damage_to_enemy(enemy : EnemyMain):
-	enemy._take_damage(15)
+	AudioManager.play_sound(AudioManager.BALL_HIT, 0, -20)
+	var damage = DAMAGE_SMALL_BULLET if !explodable else DAMAGE_LARGE_BULLET
+	enemy._take_damage(damage)
 
 func createBullets():
 	for i in range(explodingBulletsQuantity):

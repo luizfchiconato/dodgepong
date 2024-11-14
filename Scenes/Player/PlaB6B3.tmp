@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://bvg5dny32iw0x"]
+[gd_scene load_steps=60 format=3 uid="uid://bvg5dny32iw0x"]
 
 [ext_resource type="Texture2D" uid="uid://cgwb0bq0pw036" path="res://Scenes/Player/Sprite/Player_attack1.png" id="1_8w3ed"]
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/PlayerMain.gd" id="1_y5oq4"]
@@ -36,7 +36,6 @@
 [ext_resource type="LabelSettings" uid="uid://1cnb4418rr7" path="res://Art/Fonts/pixelized_label_large.tres" id="34_aqkdi"]
 [ext_resource type="Texture2D" uid="uid://ddp2jhboy02p6" path="res://Art/Sprites/HeartFullNew.png" id="34_r8jio"]
 [ext_resource type="Texture2D" uid="uid://pkquuleeol6d" path="res://Racket2.png" id="35_83ura"]
-[ext_resource type="PackedScene" uid="uid://njrsehilwxvn" path="res://Scenes/UI/HealthBar.tscn" id="37_c8lyp"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_uky13"]
 polygon = PackedVector2Array(-2, -13, -8, -13, -10, -11, -10, -2, -4, 2, -4, 10, 5, 10, 5, 2, 10, -1, 10, -10, 8, -13)
@@ -648,10 +647,6 @@ uppercase = true
 
 [node name="AttackTimeout" type="Timer" parent="."]
 wait_time = 0.8
-
-[node name="HealthBar" parent="." instance=ExtResource("37_c8lyp")]
-position = Vector2(-546.667, 285)
-scale = Vector2(2, 2)
 
 [connection signal="area_entered" from="AnimatedSprite2D/Hitboxes/Racket_Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_entered" from="AnimatedSprite2D/Hitboxes/Racket_Hitbox" to="." method="_on_hitbox_body_entered"]

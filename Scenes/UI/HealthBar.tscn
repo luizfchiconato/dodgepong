@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://njrsehilwxvn"]
+
+[ext_resource type="Script" path="res://Scenes/UI/health_bar.gd" id="1_8dpov"]
+
+[node name="HealthBar" type="Node2D"]
+script = ExtResource("1_8dpov")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://bvt7e871e6jeg"]
+[gd_scene load_steps=47 format=3 uid="uid://bvt7e871e6jeg"]
 
 [ext_resource type="Texture2D" uid="uid://d3u5e5gpffpwe" path="res://Scenes/Enemy/Sprites/Enemy09.png" id="1_chwbu"]
 [ext_resource type="Script" path="res://Scenes/Enemy/Scripts/EnemyMain.gd" id="1_db41y"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://b82yimbxiflml" path="res://Art/Particles/hit_particles.tscn" id="21_d5isq"]
 [ext_resource type="Script" path="res://Scripts/FiniteStateMachine.gd" id="21_mb2dn"]
 [ext_resource type="Script" path="res://Scenes/Enemy/Scripts/States/EnemyIdleState.gd" id="21_mks5l"]
+[ext_resource type="PackedScene" uid="uid://njrsehilwxvn" path="res://Scenes/UI/HealthBar.tscn" id="24_kud8h"]
 [ext_resource type="Script" path="res://Scenes/Enemy/Scripts/States/EnemyChaseState.gd" id="24_pg8mu"]
 [ext_resource type="Script" path="res://Scenes/Enemy/Scripts/States/EnemyAttackState.gd" id="25_osvb1"]
 [ext_resource type="Script" path="res://Scripts/AttackData.gd" id="26_b28qd"]
@@ -284,7 +285,7 @@ tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
-"update": 1,
+"update": 0,
 "values": [false, true]
 }
 
@@ -340,13 +341,13 @@ attack_node = NodePath("FSM/enemy_attack_state")
 chase_node = NodePath("FSM/enemy_chase_state")
 sprite = NodePath("AnimatedSprite2D")
 healthbar = NodePath("ProgressBar")
-health = 100
+health = 6
 flipped_horizontal = true
 hit_particles = NodePath("HitParticles")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_toimg")
-animation = &"Walk"
+animation = &"Attack"
 autoplay = "Idle"
 
 [node name="HitBox" type="Area2D" parent="AnimatedSprite2D"]
@@ -398,6 +399,7 @@ script = ExtResource("27_m2jmx")
 animator = NodePath("../../AnimationPlayer")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
+visible = false
 offset_left = -14.0
 offset_top = -31.5
 offset_right = -12.0
@@ -405,8 +407,9 @@ offset_bottom = -4.5
 rotation = -1.57079
 theme_override_styles/background = SubResource("StyleBoxFlat_x6b3o")
 theme_override_styles/fill = SubResource("StyleBoxFlat_w435t")
+max_value = 6.0
 step = 1.0
-value = 51.0
+value = 6.0
 fill_mode = 2
 show_percentage = false
 
@@ -432,6 +435,10 @@ autostart = true
 libraries = {
 "": SubResource("AnimationLibrary_eurcw")
 }
+
+[node name="HealthBar" parent="." instance=ExtResource("24_kud8h")]
+position = Vector2(-15, -41)
+scale = Vector2(0.6, 0.6)
 
 [connection signal="body_entered" from="AnimatedSprite2D/HitBox" to="FSM/enemy_attack_state" method="_on_hit_box_body_entered"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]

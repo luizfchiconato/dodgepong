@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://qvuwjqhp27vd"]
+
+[ext_resource type="Texture2D" uid="uid://ddp2jhboy02p6" path="res://Art/Sprites/HeartFullNew.png" id="1_avgbl"]
+[ext_resource type="Script" path="res://Scenes/UI/HeartRacket.gd" id="1_cenrx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tliwc"]
+atlas = ExtResource("1_avgbl")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xk5fb"]
+atlas = ExtResource("1_avgbl")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sijic"]
+atlas = ExtResource("1_avgbl")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mg7dw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tliwc")
+}],
+"loop": true,
+"name": &"empty",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xk5fb")
+}],
+"loop": true,
+"name": &"full",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sijic")
+}],
+"loop": true,
+"name": &"half",
+"speed": 5.0
+}]
+
+[node name="HeartRacket" type="Node2D"]
+script = ExtResource("1_cenrx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_mg7dw")
+animation = &"half"

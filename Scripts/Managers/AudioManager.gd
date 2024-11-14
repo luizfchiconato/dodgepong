@@ -11,6 +11,9 @@ const COIN_PICK = preload("res://Art/Audio/Effects/coin_pick.ogg")
 const QUEST_SOUND = preload("res://Art/Audio/Effects/QuestSound.ogg")
 const BALL_HIT = preload("res://Art/Audio/Effects/BallHit.ogg")
 const BOWLING_FALL = preload("res://Art/Audio/Effects/BowlingFall.ogg")
+const ENEMY_HIT_DEFAULT = preload("res://Art/Audio/Effects/EnemyHitDefault.ogg")
+const ENEMY_HIT_BOWLING = preload("res://Art/Audio/Effects/EnemyHitBowling.ogg")
+const PLAYER_HURT = preload("res://Art/Audio/Effects/PlayerHurt.ogg")
 
 #endregion
 var audio_player : AudioStreamPlayer 
