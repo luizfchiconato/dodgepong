@@ -44,7 +44,7 @@ func damage_effects():
 	#AudioManager.play_sound(audio, 0, pitch)
 	#AudioManager.play_sound(AudioManager.BLOODY_HIT, 0, -3)
 	after_damage_iframes()
-	if(hit_particles):
+	if(is_instance_valid(hit_particles) and hit_particles):
 		hit_particles.emitting = true
 
 #After we are done flashing red, we can take damage again

@@ -12,7 +12,11 @@ var rng = RandomNumberGenerator.new()
 
 @export var wait_for_deaths: int = 0
 
+@onready var animator = $AnimationPlayer
+
 @export_enum("Normal:0", "Bowling:1") var enemy_type: int
+
+var parent_death_number: int = 0
 
 signal died
 
@@ -31,6 +35,9 @@ func finished_attacking():
 
 #Register player proximity, start chasing if we are idling when the player gets close
 func _on_detection_area_body_entered(body):
+	if (!isAvailable()):
+		return
+
 	if body.is_in_group("Player"):
 		player_in_range = true
 		#We don't want this to happen from the death state, only from idle
@@ -39,21 +46,39 @@ func _on_detection_area_body_entered(body):
 
 #Return to idle when player leaves our proximity
 func _on_detection_area_body_exited(body):
+	if (!isAvailable()):
+		return
+
 	if body.is_in_group("Player"):
 		player_in_range = false
-		fsm.change_state(chase_node, "enemy_idle_state")
+		if (is_instance_valid(fsm) and is_instance_valid(chase_node)):
+			fsm.change_state(chase_node, "enemy_idle_state")
 		
+
+func increment_death_number():
+	parent_death_number = parent_death_number + 1
+	if (isAvailable()):
+		$AnimatedSprite2D.play("Idle")
+		animator.play("Idle")
+		$AnimatedSprite2D.modulate.a = 1
+		$AnimatedSprite2D.scale.x = 1
+		$AnimatedSprite2D.scale.y = 1
+		$HealthBar.visible = true
+
 func _die():
 	super() #calls _die() on base-class CharacterBase
 	fsm.force_change_state("enemy_death_state")
-	emit_signal("die")
+	emit_signal("died")
 
 func _take_damage(amount):
+	if (!isAvailable()):
+		return
+
 	if(invincible == true || is_dead == true):
 		return
 		
 	health -= amount
-	healthbar.value = health;
+	#healthbar.value = health;
 	
 	damage_effects()
 	
@@ -63,9 +88,19 @@ func _take_damage(amount):
 		_die()
 	
 func _ready():
+	if wait_for_deaths > 0:
+		$AnimatedSprite2D.play("Hidden")
+		animator.play("Hidden")
+		$AnimatedSprite2D.modulate.a = 0.7
+		$AnimatedSprite2D.scale.x = 0.7
+		$AnimatedSprite2D.scale.y = 0.7
+		$HealthBar.visible = false
 	$BulletTimer.wait_time = bullet_interval
 
 func _on_bullet_timer_timeout():
+	if (!isAvailable()):
+		return
+
 	createBullet()
 	var my_random_number
 
@@ -79,9 +114,8 @@ func _on_bullet_timer_timeout():
 	return true
 
 func createBullet():
-	#var death_number = get_parent().get_parent().death_number
-	#if (death_number < wait_for_deaths):
-	#	return
+	if (!isAvailable()):
+		return
 	
 	if (enemy_type == TYPE_BOWLING):
 		createBowlingBall()
@@ -102,3 +136,6 @@ func createDefaultBall():
 	bullet.global_position = global_position
 	bullet.set_as_top_level(true)
 	get_tree().root.add_child(bullet)
+
+func isAvailable():
+	return parent_death_number >= wait_for_deaths

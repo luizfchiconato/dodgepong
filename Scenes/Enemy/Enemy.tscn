@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://bvt7e871e6jeg"]
+[gd_scene load_steps=55 format=3 uid="uid://bvt7e871e6jeg"]
 
 [ext_resource type="Texture2D" uid="uid://d3u5e5gpffpwe" path="res://Scenes/Enemy/Sprites/Enemy09.png" id="1_chwbu"]
 [ext_resource type="Script" path="res://Scenes/Enemy/Scripts/EnemyMain.gd" id="1_db41y"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://bciwyh2xk1t0w" path="res://Scenes/Enemy/Sprites/Enemy21.png" id="12_kwtv6"]
 [ext_resource type="Texture2D" uid="uid://plb1yuj4g11y" path="res://Scenes/Enemy/Sprites/Enemy22.png" id="13_hsklp"]
 [ext_resource type="Texture2D" uid="uid://cx5lg2vttffr7" path="res://Art/Sprites/BaseEnemy.png" id="15_4ab4f"]
+[ext_resource type="Texture2D" uid="uid://dtn4kbck3b1t3" path="res://Art/Sprites/BaseEnemyHidden.png" id="15_yjq43"]
 [ext_resource type="PackedScene" uid="uid://b82yimbxiflml" path="res://Art/Particles/hit_particles.tscn" id="21_d5isq"]
 [ext_resource type="Script" path="res://Scripts/FiniteStateMachine.gd" id="21_mb2dn"]
 [ext_resource type="Script" path="res://Scenes/Enemy/Scripts/States/EnemyIdleState.gd" id="21_mks5l"]
@@ -24,6 +25,30 @@
 [ext_resource type="Script" path="res://Scripts/AttackData.gd" id="26_b28qd"]
 [ext_resource type="Texture2D" uid="uid://bw36ig60cpuaq" path="res://Art/Sprites/Square.png" id="27_0oljh"]
 [ext_resource type="Script" path="res://Scenes/Enemy/Scripts/States/EnemyDeathState.gd" id="27_m2jmx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jyenf"]
+atlas = ExtResource("15_yjq43")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xor4e"]
+atlas = ExtResource("15_yjq43")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ucwnt"]
+atlas = ExtResource("15_yjq43")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qw58c"]
+atlas = ExtResource("15_yjq43")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pht6g"]
+atlas = ExtResource("15_yjq43")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k7bsc"]
+atlas = ExtResource("15_yjq43")
+region = Rect2(320, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qa010"]
 atlas = ExtResource("15_4ab4f")
@@ -98,6 +123,44 @@ animations = [{
 "loop": false,
 "name": &"Death",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_jyenf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xor4e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ucwnt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qw58c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pht6g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k7bsc")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_k7bsc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pht6g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qw58c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ucwnt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xor4e")
+}],
+"loop": true,
+"name": &"Hidden",
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -318,11 +381,40 @@ tracks/1/keys = {
 "values": [0, 1, 2, 3]
 }
 
+[sub_resource type="Animation" id="Animation_vb8lm"]
+resource_name = "Hidden"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Hidden"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2, 1.6, 2, 2.7, 3.2, 3.7, 4.3, 4.9, 5.4, 5.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 4, 3, 2, 1, 0, 0, 0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_i1jlq"]
 _data = {
 "Attack": SubResource("Animation_pya5h"),
 "Chasing": SubResource("Animation_vh18e"),
 "Death": SubResource("Animation_1r6mx"),
+"Hidden": SubResource("Animation_vb8lm"),
 "Idle": SubResource("Animation_lw05y")
 }
 
@@ -347,7 +439,7 @@ hit_particles = NodePath("HitParticles")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_toimg")
-animation = &"Attack"
+animation = &"Hidden"
 autoplay = "Idle"
 
 [node name="HitBox" type="Area2D" parent="AnimatedSprite2D"]

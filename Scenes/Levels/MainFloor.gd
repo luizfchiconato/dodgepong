@@ -13,4 +13,7 @@ func _process(delta):
 
 
 func _on_enemy_died():
-	death_number = death_number + 1
+	for child in get_children():
+		for grandson in child.get_children():
+			if grandson is EnemyMain:
+				grandson.increment_death_number()

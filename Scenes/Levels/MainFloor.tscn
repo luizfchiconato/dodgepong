@@ -32,14 +32,6 @@ health = 6
 
 [node name="Enemies" type="Node" parent="."]
 
-[node name="Enemy8" parent="Enemies" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("2_gsqk0")]
-position = Vector2(-207, 177)
-attack_node = NodePath("../Enemy6/FSM/enemy_attack_state")
-chase_node = NodePath("../Enemy6/FSM/enemy_chase_state")
-sprite = NodePath("../Enemy6/AnimatedSprite2D")
-healthbar = NodePath("../Enemy6/ProgressBar")
-hit_particles = NodePath("../Enemy6/HitParticles")
-
 [node name="Enemy7" parent="Enemies" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("2_gsqk0")]
 position = Vector2(145, -77)
 attack_node = NodePath("../Enemy6/FSM/enemy_attack_state")
@@ -54,6 +46,44 @@ enemy_type = 1
 
 [node name="Enemy10" parent="Enemies" instance=ExtResource("2_gsqk0")]
 position = Vector2(-240, -41)
+
+[node name="Enemy11" parent="Enemies" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("2_gsqk0")]
+position = Vector2(-139, -12)
+attack_node = NodePath("../Enemy10/FSM/enemy_attack_state")
+chase_node = NodePath("../Enemy10/FSM/enemy_chase_state")
+sprite = NodePath("../Enemy10/AnimatedSprite2D")
+healthbar = NodePath("../Enemy10/ProgressBar")
+hit_particles = NodePath("../Enemy10/HitParticles")
+
+[node name="Enemy9" parent="Enemies" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("2_gsqk0")]
+position = Vector2(-43, 148)
+attack_node = NodePath("../Enemy6/FSM/enemy_attack_state")
+chase_node = NodePath("../Enemy6/FSM/enemy_chase_state")
+wait_for_deaths = 2
+enemy_type = 1
+sprite = NodePath("../Enemy6/AnimatedSprite2D")
+healthbar = NodePath("../Enemy6/ProgressBar")
+hit_particles = NodePath("../Enemy6/HitParticles")
+
+[node name="Enemy12" parent="Enemies" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("2_gsqk0")]
+position = Vector2(25, -53)
+attack_node = NodePath("../Enemy6/FSM/enemy_attack_state")
+chase_node = NodePath("../Enemy6/FSM/enemy_chase_state")
+wait_for_deaths = 3
+enemy_type = 1
+sprite = NodePath("../Enemy6/AnimatedSprite2D")
+healthbar = NodePath("../Enemy6/ProgressBar")
+hit_particles = NodePath("../Enemy6/HitParticles")
+
+[node name="Enemy8" parent="Enemies" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "healthbar", "hit_particles") instance=ExtResource("2_gsqk0")]
+position = Vector2(-207, 177)
+attack_node = NodePath("../Enemy6/FSM/enemy_attack_state")
+chase_node = NodePath("../Enemy6/FSM/enemy_chase_state")
+wait_for_deaths = 2
+enemy_type = 1
+sprite = NodePath("../Enemy6/AnimatedSprite2D")
+healthbar = NodePath("../Enemy6/ProgressBar")
+hit_particles = NodePath("../Enemy6/HitParticles")
 
 [node name="Pickups" type="Node" parent="."]
 
@@ -184,9 +214,12 @@ quest_id = 1
 quest_name = "Explore"
 quest_objective = Array[String](["Expore the corridoors", "Find a way past the enemy"])
 
-[connection signal="died" from="Enemies/Enemy8" to="." method="_on_enemy_died"]
 [connection signal="died" from="Enemies/Enemy7" to="." method="_on_enemy_died"]
 [connection signal="died" from="Enemies/Enemy6" to="." method="_on_enemy_died"]
 [connection signal="died" from="Enemies/Enemy10" to="." method="_on_enemy_died"]
+[connection signal="died" from="Enemies/Enemy11" to="." method="_on_enemy_died"]
+[connection signal="died" from="Enemies/Enemy9" to="." method="_on_enemy_died"]
+[connection signal="died" from="Enemies/Enemy12" to="." method="_on_enemy_died"]
+[connection signal="died" from="Enemies/Enemy8" to="." method="_on_enemy_died"]
 [connection signal="body_entered" from="Scene/AreaExit" to="Scene/AreaExit" method="_on_body_entered"]
 [connection signal="body_exited" from="Scene/AreaExit" to="Scene/AreaExit" method="_on_body_exited"]
