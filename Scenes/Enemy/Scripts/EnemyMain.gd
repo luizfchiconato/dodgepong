@@ -58,12 +58,16 @@ func _on_detection_area_body_exited(body):
 func increment_death_number():
 	parent_death_number = parent_death_number + 1
 	if (isAvailable()):
-		$AnimatedSprite2D.play("Idle")
-		animator.play("Idle")
-		$AnimatedSprite2D.modulate.a = 1
-		$AnimatedSprite2D.scale.x = 1
-		$AnimatedSprite2D.scale.y = 1
-		$HealthBar.visible = true
+		activateEnemy()
+
+func activateEnemy():
+	$AnimatedSprite2D.play("Idle")
+	animator.play("Idle")
+	$AnimatedSprite2D.modulate.a = 1
+	$AnimatedSprite2D.scale.x = 1
+	$AnimatedSprite2D.scale.y = 1
+	$HealthBar.visible = true
+	$BodyCollider.set_deferred("disabled", false)
 
 func _die():
 	super() #calls _die() on base-class CharacterBase
@@ -89,14 +93,18 @@ func _take_damage(amount):
 	
 func _ready():
 	if wait_for_deaths > 0:
-		$AnimatedSprite2D.play("Hidden")
-		animator.play("Hidden")
-		$AnimatedSprite2D.modulate.a = 0.7
-		$AnimatedSprite2D.scale.x = 0.7
-		$AnimatedSprite2D.scale.y = 0.7
-		$HealthBar.visible = false
+		deactivateEnemy()
 	$BulletTimer.wait_time = bullet_interval
 
+func deactivateEnemy():
+	$AnimatedSprite2D.play("Hidden")
+	animator.play("Hidden")
+	$AnimatedSprite2D.modulate.a = 0.7
+	$AnimatedSprite2D.scale.x = 0.7
+	$AnimatedSprite2D.scale.y = 0.7
+	$HealthBar.visible = false
+	$BodyCollider.set_deferred("disabled", true)
+	
 func _on_bullet_timer_timeout():
 	if (!isAvailable()):
 		return

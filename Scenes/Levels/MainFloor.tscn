@@ -13,8 +13,8 @@
 [ext_resource type="Script" path="res://Scenes/Levels/AreaExit.gd" id="9_0m0mm"]
 [ext_resource type="PackedScene" uid="uid://bt5yicfpmnlwk" path="res://Scenes/Levels/Basement01.tscn" id="10_hj57s"]
 [ext_resource type="PackedScene" uid="uid://b6xb8nhlqtuhf" path="res://Scenes/ScoreTracker.tscn" id="11_6cy1t"]
-[ext_resource type="AudioStream" uid="uid://bia7rrlxphfg2" path="res://Art/Audio/corridorsOgg.ogg" id="12_87j7f"]
 [ext_resource type="PackedScene" uid="uid://48vtm5vekhaq" path="res://Scenes/QuestUpdate.tscn" id="13_fd737"]
+[ext_resource type="AudioStream" uid="uid://duk65jhplli8h" path="res://Art/Audio/Music/TetrisNivel1.mp3" id="14_bnmr6"]
 [ext_resource type="Script" path="res://Scripts/QuestGeneral/Quest.gd" id="14_itxyw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gtoj4"]
@@ -187,8 +187,9 @@ label_settings = ExtResource("7_tuycv")
 [node name="Score_UI" parent="." instance=ExtResource("11_6cy1t")]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("12_87j7f")
-volume_db = -1.0
+stream = ExtResource("14_bnmr6")
+volume_db = -12.0
+autoplay = true
 
 [node name="QuestStart" parent="." node_paths=PackedStringArray("quest") instance=ExtResource("13_fd737")]
 visible = false

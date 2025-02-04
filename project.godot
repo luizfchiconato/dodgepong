@@ -14,9 +14,11 @@ config/name="Parry Pong"
 config/description="This 2D Pixelart, TopDown action Starter Project include all the basics you need to get started creating a game."
 config/version="1.4"
 config/tags=PackedStringArray("starterkit")
-run/main_scene="res://Scenes/Levels/MainFloor.tscn"
+run/main_scene="res://Scenes/SplashScreen/demo_splash_screen_wizard/demo_splash_screen_wizard.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
+boot_splash/show_image=false
 boot_splash/image="res://Art/Icons/icon.png"
+boot_splash/fullsize=false
 boot_splash/use_filter=false
 config/icon="res://Art/Icons/icon.png"
 

@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxqpgg8ax8bqv"]
+
+[ext_resource type="Texture2D" uid="uid://cnhi4do10thow" path="res://Scenes/SplashScreen/demo_splash_screen_wizard/assets/logo_vertical_monochrome_dark.svg" id="2_0b4hu"]
+
+[node name="SlideGodot" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Godot" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(0.77, 0.77)
+texture = ExtResource("2_0b4hu")
