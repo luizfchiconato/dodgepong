@@ -112,10 +112,12 @@ func _on_bullet_timer_timeout():
 	createBullet()
 	var my_random_number
 
-	if (enemy_type == TYPE_BOWLING):
-		my_random_number = rng.randf_range(1.5, 2.75)
-	else:
-		my_random_number = rng.randf_range(1.5, 2)
+	#if (enemy_type == TYPE_BOWLING):
+	#	my_random_number = rng.randf_range(1.5, 2.75)
+	#else:
+	#	my_random_number = rng.randf_range(1.5, 2)
+		
+	my_random_number = rng.randf_range(bullet_interval - bullet_interval * 0.2, bullet_interval + bullet_interval * 0.2)
 
 	$BulletTimer.wait_time = my_random_number
 	$BulletTimer.start()

@@ -31,7 +31,7 @@ var Player = load("res://Scenes/Player/Player.tscn")
 @export var parent_enemy : EnemyMain
 
 var arcHeight = RandomNumberGenerator.new().randf_range(225, 225)
-var duration = RandomNumberGenerator.new().randf_range(1.50, 2)
+var duration = RandomNumberGenerator.new().randf_range(1.00, 1.5)
 
 var t = 0.0
 

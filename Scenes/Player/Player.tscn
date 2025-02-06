@@ -560,6 +560,9 @@ initial_velocity_min = 4.57
 initial_velocity_max = 13.7
 color = Color(0.305882, 0.831373, 0.760784, 1)
 
+[node name="DashTimeout" type="Timer" parent="FSM/Moving"]
+wait_time = 0.3
+
 [node name="DashTimer" type="Timer" parent="FSM/Moving"]
 wait_time = 0.2
 
@@ -656,5 +659,6 @@ scale = Vector2(2, 2)
 [connection signal="area_entered" from="AnimatedSprite2D/Hitboxes/Racket_Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_entered" from="AnimatedSprite2D/Hitboxes/Racket_Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_entered" from="AnimatedSprite2D/Hitboxes/Racket_Hitbox" to="FSM/Idle" method="_on_hitbox_body_entered"]
+[connection signal="timeout" from="FSM/Moving/DashTimeout" to="FSM/Moving" method="_on_dash_timeout_timeout"]
 [connection signal="timeout" from="FSM/Moving/DashTimer" to="FSM/Moving" method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="AttackTimeout" to="." method="_on_attack_timeout_timeout"]

@@ -8,7 +8,7 @@ var converted = false
 var previousConverted = false
 var explodable = true
 
-var explodingBulletsQuantity = 10
+var explodingBulletsQuantity = RandomNumberGenerator.new().randf_range(8, 16)
 
 var Bullet = load("res://Scenes/Projectiles/Bullet.tscn")
 var Player = load("res://Scenes/Player/Player.tscn")
@@ -57,7 +57,7 @@ func deal_damage_to_player(player : PlayerMain):
 		player._take_damage(damage)
 
 func deal_damage_to_enemy(enemy : EnemyMain):
-	AudioManager.play_sound(AudioManager.BALL_HIT, 0, -20)
+	AudioManager.play_sound(AudioManager.ENEMY_HIT_DEFAULT, 0, 0)
 	var damage = DAMAGE_SMALL_BULLET if !explodable else DAMAGE_LARGE_BULLET
 	enemy._take_damage(damage)
 

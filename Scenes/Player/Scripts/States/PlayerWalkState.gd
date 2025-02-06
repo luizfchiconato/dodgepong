@@ -28,7 +28,7 @@ func Update(delta : float):
 
 	if(Input.is_action_just_pressed("Dash") && can_dash):
 		start_dash(input_dir)
-		AudioManager.play_sound(AudioManager.PLAYER_ATTACK_SWING, 0.3, -1)
+		AudioManager.play_sound(AudioManager.DASH, 0, -20)
 		
 	#if Input.is_action_just_pressed("Punch") or Input.is_action_just_pressed("Kick"):
 	#	Transition("Attacking")
@@ -63,14 +63,22 @@ func Transition(newstate):
 
 
 func _on_dash_timer_timeout():
+	$DashTimer.stop()
 	endDash()
+
+
 
 func endDash():
 	dashParticles.emitting = false
 	is_dashing = false
-	can_dash = true
+	$DashTimeout.start()
 	dash_direction = Vector2.ZERO
 	
 	if(animator.current_animation == "Dash"):
 		await animator.animation_finished
 		animator.play("Walk")
+
+
+func _on_dash_timeout_timeout():
+	$DashTimeout.stop()
+	can_dash = true
